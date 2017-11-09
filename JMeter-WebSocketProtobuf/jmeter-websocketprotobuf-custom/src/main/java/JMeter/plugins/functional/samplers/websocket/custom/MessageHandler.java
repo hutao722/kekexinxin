@@ -17,7 +17,7 @@ public class MessageHandler {
 	private static final Logger log = LoggingManager.getLoggerForClass();
 	
 	/**
-	 * 将请求的json数据转换成pb流数据
+	 * convert the request json to pb
 	 * @param message
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public class MessageHandler {
 	}
 	
 	/**
-	 * 解析返回的pb流，转换成json数据
+	 * convert the response pb to json
 	 * @param buf
 	 * @return
 	 */
@@ -70,7 +70,6 @@ public class MessageHandler {
 		if (responseType == BaseResponse.ResponseType.LoginResponse_VALUE) {
 			return new LoginConvert().PBToJson(response, basejson);
 		}
-		// init方法只需要返回基础响应即可
 		return basejson.toJSONString();
 	}
 }

@@ -1,19 +1,17 @@
 syntax = "proto2";
 
-/**基类请求消息格式 **/
 message BaseRequest {
-    enum RequestType { // 业务类型列表
-        InitRequest = 0; // 初始化
-        LoginRequest = 1; // 登录
+    enum RequestType { 
+        InitRequest = 0; 
+        LoginRequest = 1; 
     }
 
-    required RequestType requestType = 1; //业务类型
-    required string version = 2; //消息版本
+    required RequestType requestType = 1;
+    required string version = 2;
 
-    extensions 10 to max; //可扩展的定义从序号10开始
+    extensions 10 to max; 
 }
 
-/** 初始化消息 **/
 message InitRequest {
     extend BaseRequest {
         optional InitRequest request = 10;
@@ -21,32 +19,29 @@ message InitRequest {
     required int32 appType = 1;
 }
 
-/** 登录消息 **/
 message LoginRequest {
 
     extend BaseRequest {
         optional LoginRequest request = 11;
     }
-    required string userName = 1; //用户名
-    required string password = 2; //密码
+    required string userName = 1; 
+    required string password = 2; 
 }
 
-/** 基类响应消息格式 **/
 message BaseResponse {
 
-    enum ResponseType { // 业务类型
-        InitResponse = 0; // 初始化响应
-        LoginResponse = 1; // 登录响应
+    enum ResponseType { 
+        InitResponse = 0; 
+        LoginResponse = 1; 
     }
 
-    required ResponseType responseType = 1; //业务类型
-    required int32 code = 2; //状态码
-    required string msg = 3; //状态码描述
+    required ResponseType responseType = 1; 
+    required int32 code = 2; 
+    required string msg = 3; 
      
-    extensions 10 to max; //可扩展的定义从序号10开始
+    extensions 10 to max; 
 }
 
-/** 初始化消息 **/
 message InitResponse {
 
     extend BaseResponse {
@@ -57,7 +52,6 @@ message InitResponse {
     optional Result result = 1;
 }
 
-/** 登录响应消息 **/
 message LoginResponse {
 
     extend BaseResponse {
@@ -65,8 +59,8 @@ message LoginResponse {
     }
     message Result {
         message UserInfo {
-            optional string realName = 1; //真实姓名
-            optional string token = 2; //token
+            optional string realName = 1;
+            optional string token = 2; 
         }
         optional UserInfo userInfo = 1;
     }
