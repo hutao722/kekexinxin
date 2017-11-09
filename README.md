@@ -5,9 +5,9 @@ This jmeter plugin is used to test the backend server developed by websocket wit
 ### The project
 The project has two subproject. 
 
-One is jmeter-websocketprotobuf-front which is based on maciejzaleski/JMeter-WebSocketSampler(https://github.com/maciejzaleski/JMeter-WebSocketSampler).
+One is jmeter-websocketprotobuf-front which is based on maciejzaleski/JMeter-WebSocketSampler(https://github.com/maciejzaleski/JMeter-WebSocketSampler). I did some change to support the protobuf.
 
-The othe is jmeter-websocketprotobuf-custom which has a demo to show you the translation between the json data and the protobuf data. You need to change the code with your need.
+The other is jmeter-websocketprotobuf-custom which has a demo to show you the translation between the json data and the protobuf data. You need to change the code with your need.
 
 ### The usage
 
@@ -41,4 +41,8 @@ The othe is jmeter-websocketprotobuf-custom which has a demo to show you the tra
 
 3. Restart the jmeter to reload the modules. Now we can use Websocket sampler to do test:
    
+   ![image](https://github.com/hutao722/kekexinxin/wiki/jmeter.png)
    
+   After running, you can see the result from the observe tree.
+   
+   By the way, this plugin support both ws and wss.
