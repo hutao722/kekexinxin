@@ -1,0 +1,74 @@
+syntax = "proto2";
+
+/**基类请求消息格式 **/
+message BaseRequest {
+    enum RequestType { // 业务类型列表
+        InitRequest = 0; // 初始化
+        LoginRequest = 1; // 登录
+    }
+
+    required RequestType requestType = 1; //业务类型
+    required string version = 2; //消息版本
+
+    extensions 10 to max; //可扩展的定义从序号10开始
+}
+
+/** 初始化消息 **/
+message InitRequest {
+    extend BaseRequest {
+        optional InitRequest request = 10;
+    }
+    required int32 appType = 1;
+}
+
+/** 登录消息 **/
+message LoginRequest {
+
+    extend BaseRequest {
+        optional LoginRequest request = 11;
+    }
+    required string userName = 1; //用户名
+    required string password = 2; //密码
+}
+
+/** 基类响应消息格式 **/
+message BaseResponse {
+
+    enum ResponseType { // 业务类型
+        InitResponse = 0; // 初始化响应
+        LoginResponse = 1; // 登录响应
+    }
+
+    required ResponseType responseType = 1; //业务类型
+    required int32 code = 2; //状态码
+    required string msg = 3; //状态码描述
+     
+    extensions 10 to max; //可扩展的定义从序号10开始
+}
+
+/** 初始化消息 **/
+message InitResponse {
+
+    extend BaseResponse {
+        optional InitResponse response = 10;
+    }
+    message Result {
+    }
+    optional Result result = 1;
+}
+
+/** 登录响应消息 **/
+message LoginResponse {
+
+    extend BaseResponse {
+        optional LoginResponse response = 11;
+    }
+    message Result {
+        message UserInfo {
+            optional string realName = 1; //真实姓名
+            optional string token = 2; //token
+        }
+        optional UserInfo userInfo = 1;
+    }
+    optional Result result = 1;
+}
